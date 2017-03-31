@@ -1,13 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Hero } from './hero';
+import { HeroService } from './hero.service';
 
-export class Hero {
-    id: number;
-    name: string;
-}
 
 @Component({
   selector: 'my-app',
-    template: `
+  template: `
 <h1>{{title}}</h1>
 <h2>My Heroes</h2>
 <ul class="heroes">
@@ -17,16 +15,9 @@ export class Hero {
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </li>
 </ul>
-<div *ngIf="selectedHero">
-  <h2>{{selectedHero.name}} details!</h2>
-  <div><label>id: </label>{{selectedHero.id}}</div>
-  <div>
-      <label>name: </label>
-      <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-  </div>
-</div>
+<hero-detail [hero]="selectedHero"></hero-detail>
 `,
-styles: [`
+  styles: [`
 .selected {
     background-color: #CFD8DC !important;
     color: white;
@@ -74,28 +65,22 @@ styles: [`
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
 }
-`]
+`],
+  providers: [HeroService]
 })
 
 export class AppComponent  {
+    constructor(private heroService: HeroService) { }
     title = 'Tour of Heroes';
-    selectedHero: Hero;
-    heroes = HEROES;
+    selectedHero: Hero;    
+    heroes: Hero[];
     onSelect(hero: Hero): void {
         this.selectedHero = hero;
     }
+    getHeroes(): void {
+        this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+    }
+    ngOnInit(): void {
+        this.getHeroes();
+    }
 }
-
-const HEROES: Hero[] = [
-    {id:11, name:"Joe Mamma 1"},
-    {id:12, name:"Joe Mamma 2"},
-    {id:13, name:"Joe Mamma 3"},
-    {id:14, name:"Joe Mamma 4"},
-    {id:15, name:"Joe Mamma 5"},
-    {id:16, name:"Joe Mamma 6"},
-    {id:17, name:"Joe Mamma 7"},
-    {id:18, name:"Joe Mamma 8"},
-    {id:19, name:"Joe Mamma 9"},
-    {id:20, name:"Joe Mamma 10"}
-];
-
