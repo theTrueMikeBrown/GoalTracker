@@ -3,19 +3,15 @@ var InMemoryDataService = (function () {
     function InMemoryDataService() {
     }
     InMemoryDataService.prototype.createDb = function () {
-        var heroes = [
-            { id: 11, name: 'Mr. Nice' },
-            { id: 12, name: 'Narco' },
-            { id: 13, name: 'Bombasto' },
-            { id: 14, name: 'Celeritas' },
-            { id: 15, name: 'Magneta' },
-            { id: 16, name: 'RubberMan' },
-            { id: 17, name: 'Dynama' },
-            { id: 18, name: 'Dr IQ' },
-            { id: 19, name: 'Magma' },
-            { id: 20, name: 'Tornado' }
+        var goals = [
+            { id: 1, name: 'Identify the problem' },
+            { id: 2, name: 'Climb down there' },
+            { id: 3, name: 'Fix it!' },
+            { id: 4, name: 'Identify another problem' },
+            { id: 5, name: 'Fix it!' },
+            { id: 6, name: 'Keep identifying problems and fixing them until they are FIXED!' },
         ];
-        return { heroes: heroes };
+        return { goals: goals };
     };
     return InMemoryDataService;
 }());

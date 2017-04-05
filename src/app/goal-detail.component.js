@@ -12,39 +12,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
-var hero_service_1 = require("./hero.service");
+var goal_service_1 = require("./goal.service");
 require("rxjs/add/operator/switchMap");
-var HeroDetailComponent = (function () {
-    function HeroDetailComponent(heroService, route, location) {
-        this.heroService = heroService;
+var GoalDetailComponent = (function () {
+    function GoalDetailComponent(goalService, route, location) {
+        this.goalService = goalService;
         this.route = route;
         this.location = location;
     }
-    HeroDetailComponent.prototype.ngOnInit = function () {
+    GoalDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params
-            .switchMap(function (params) { return _this.heroService.getHero(+params['id']); })
-            .subscribe(function (hero) { return _this.hero = hero; });
+            .switchMap(function (params) { return _this.goalService.getGoal(+params['id']); })
+            .subscribe(function (goal) { return _this.goal = goal; });
     };
-    HeroDetailComponent.prototype.goBack = function () {
+    GoalDetailComponent.prototype.goBack = function () {
         this.location.back();
     };
-    HeroDetailComponent.prototype.save = function () {
+    GoalDetailComponent.prototype.save = function () {
         var _this = this;
-        this.heroService.update(this.hero)
+        this.goalService.update(this.goal)
             .then(function () { return _this.goBack(); });
     };
-    return HeroDetailComponent;
+    return GoalDetailComponent;
 }());
-HeroDetailComponent = __decorate([
+GoalDetailComponent = __decorate([
     core_1.Component({
-        selector: 'hero-detail',
-        templateUrl: './hero-detail.component.html',
-        styleUrls: ['./hero-detail.component.css']
+        selector: 'goal-detail',
+        templateUrl: './goal-detail.component.html',
+        styleUrls: ['./goal-detail.component.css']
     }),
-    __metadata("design:paramtypes", [hero_service_1.HeroService,
+    __metadata("design:paramtypes", [goal_service_1.GoalService,
         router_1.ActivatedRoute,
         common_1.Location])
-], HeroDetailComponent);
-exports.HeroDetailComponent = HeroDetailComponent;
-//# sourceMappingURL=hero-detail.component.js.map
+], GoalDetailComponent);
+exports.GoalDetailComponent = GoalDetailComponent;
+//# sourceMappingURL=goal-detail.component.js.map

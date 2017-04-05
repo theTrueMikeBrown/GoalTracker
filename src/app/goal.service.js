@@ -11,56 +11,56 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
-var HeroService = (function () {
-    function HeroService(http) {
+var GoalService = (function () {
+    function GoalService(http) {
         this.http = http;
-        this.heroesUrl = 'api/heroes'; // URL to web api
+        this.goalsUrl = 'api/goals'; // URL to web api
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
-    HeroService.prototype.getHeroes = function () {
-        return this.http.get(this.heroesUrl)
+    GoalService.prototype.getGoals = function () {
+        return this.http.get(this.goalsUrl)
             .toPromise()
             .then(function (response) { return response.json().data; })
             .catch(this.handleError);
     };
-    HeroService.prototype.handleError = function (error) {
+    GoalService.prototype.handleError = function (error) {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     };
-    HeroService.prototype.getHero = function (id) {
-        var url = this.heroesUrl + "/" + id;
+    GoalService.prototype.getGoal = function (id) {
+        var url = this.goalsUrl + "/" + id;
         return this.http.get(url)
             .toPromise()
             .then(function (response) { return response.json().data; })
             .catch(this.handleError);
     };
-    HeroService.prototype.update = function (hero) {
-        var url = this.heroesUrl + "/" + hero.id;
+    GoalService.prototype.update = function (goal) {
+        var url = this.goalsUrl + "/" + goal.id;
         return this.http
-            .put(url, JSON.stringify(hero), { headers: this.headers })
+            .put(url, JSON.stringify(goal), { headers: this.headers })
             .toPromise()
-            .then(function () { return hero; })
+            .then(function () { return goal; })
             .catch(this.handleError);
     };
-    HeroService.prototype.create = function (name) {
+    GoalService.prototype.create = function (name) {
         return this.http
-            .post(this.heroesUrl, JSON.stringify({ name: name }), { headers: this.headers })
+            .post(this.goalsUrl, JSON.stringify({ name: name }), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json().data; })
             .catch(this.handleError);
     };
-    HeroService.prototype.delete = function (id) {
-        var url = this.heroesUrl + "/" + id;
+    GoalService.prototype.delete = function (id) {
+        var url = this.goalsUrl + "/" + id;
         return this.http.delete(url, { headers: this.headers })
             .toPromise()
             .then(function () { return null; })
             .catch(this.handleError);
     };
-    return HeroService;
+    return GoalService;
 }());
-HeroService = __decorate([
+GoalService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http])
-], HeroService);
-exports.HeroService = HeroService;
-//# sourceMappingURL=hero.service.js.map
+], GoalService);
+exports.GoalService = GoalService;
+//# sourceMappingURL=goal.service.js.map

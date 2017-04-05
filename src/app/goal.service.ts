@@ -3,18 +3,18 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Hero } from './hero';
+import { Goal } from './goal';
 
 @Injectable()
-export class HeroService {
-    private heroesUrl = 'api/heroes';  // URL to web api
+export class GoalService {
+    private goalsUrl = 'api/goals';  // URL to web api
 
     constructor(private http: Http) { }
 
-    getHeroes(): Promise<Hero[]> {
-        return this.http.get(this.heroesUrl)
+    getGoals(): Promise<Goal[]> {
+        return this.http.get(this.goalsUrl)
             .toPromise()
-            .then(response => response.json().data as Hero[])
+            .then(response => response.json().data as Goal[])
             .catch(this.handleError);
     }
 
@@ -23,35 +23,35 @@ export class HeroService {
         return Promise.reject(error.message || error);
     }
 
-    getHero(id: number): Promise<Hero> {
-        const url = `${this.heroesUrl}/${id}`;
+    getGoal(id: number): Promise<Goal> {
+        const url = `${this.goalsUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as Hero)
+            .then(response => response.json().data as Goal)
             .catch(this.handleError);
     }
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
-    update(hero: Hero): Promise<Hero> {
-        const url = `${this.heroesUrl}/${hero.id}`;
+    update(goal: Goal): Promise<Goal> {
+        const url = `${this.goalsUrl}/${goal.id}`;
         return this.http
-            .put(url, JSON.stringify(hero), { headers: this.headers })
+            .put(url, JSON.stringify(goal), { headers: this.headers })
             .toPromise()
-            .then(() => hero)
+            .then(() => goal)
             .catch(this.handleError);
     }
 
-    create(name: string): Promise<Hero> {
+    create(name: string): Promise<Goal> {
         return this.http
-            .post(this.heroesUrl, JSON.stringify({ name: name }), { headers: this.headers })
+            .post(this.goalsUrl, JSON.stringify({ name: name }), { headers: this.headers })
             .toPromise()
-            .then(res => res.json().data as Hero)
+            .then(res => res.json().data as Goal)
             .catch(this.handleError);
     }
 
     delete(id: number): Promise<void> {
-        const url = `${this.heroesUrl}/${id}`;
+        const url = `${this.goalsUrl}/${id}`;
         return this.http.delete(url, { headers: this.headers })
             .toPromise()
             .then(() => null)

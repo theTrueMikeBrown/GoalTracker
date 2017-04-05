@@ -1,33 +1,33 @@
-import { Hero } from './hero';
+import { Goal } from './goal';
 
 // Keep the Input import for now, you'll remove it later:
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { HeroService } from './hero.service';
+import { GoalService } from './goal.service';
 
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-    selector: 'hero-detail',
-    templateUrl: './hero-detail.component.html',
-    styleUrls: ['./hero-detail.component.css']
+    selector: 'goal-detail',
+    templateUrl: './goal-detail.component.html',
+    styleUrls: ['./goal-detail.component.css']
 })
 
-export class HeroDetailComponent implements OnInit {
-    hero: Hero;
+export class GoalDetailComponent implements OnInit {
+    goal: Goal;
 
     constructor(
-        private heroService: HeroService,
+        private goalService: GoalService,
         private route: ActivatedRoute,
         private location: Location
     ) { }
 
     ngOnInit(): void {
         this.route.params
-            .switchMap((params: Params) => this.heroService.getHero(+params['id']))
-            .subscribe(hero => this.hero = hero);
+            .switchMap((params: Params) => this.goalService.getGoal(+params['id']))
+            .subscribe(goal => this.goal = goal);
     }
 
     goBack(): void {
@@ -35,7 +35,7 @@ export class HeroDetailComponent implements OnInit {
     }
 
     save(): void {
-        this.heroService.update(this.hero)
+        this.goalService.update(this.goal)
             .then(() => this.goBack());
     }
 }
