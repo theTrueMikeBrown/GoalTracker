@@ -13,6 +13,8 @@ import { AppComponent } from './app.component';
 import { GoalsComponent } from './goals.component';
 import { GoalDetailComponent } from './goal-detail.component';
 import { GoalService } from './goal.service';
+import { TeamComponent } from './team.component';
+import { PersonService } from './person.service'
 
 @NgModule({
     imports: [
@@ -26,8 +28,9 @@ import { GoalService } from './goal.service';
         AppComponent,
         GoalsComponent,
         GoalDetailComponent,
+        TeamComponent        
     ],
-    providers: [GoalService],
+    providers: [GoalService, PersonService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

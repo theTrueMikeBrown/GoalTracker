@@ -1,6 +1,4 @@
 import { Goal } from './goal';
-
-// Keep the Input import for now, you'll remove it later:
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';

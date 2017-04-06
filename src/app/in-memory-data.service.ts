@@ -9,6 +9,9 @@ export class InMemoryDataService implements InMemoryDbService {
             { id: 5, name: 'Fix it!' },
             { id: 6, name: 'Keep identifying problems and fixing them until they are FIXED!' },
         ];
-        return { goals };
+        let people = [
+            { id: 1, name: 'Mike' },
+        ]
+        return { goals, people };
     }
 }

@@ -15,11 +15,8 @@ var GoalsComponent = (function () {
     function GoalsComponent(goalService, router) {
         this.goalService = goalService;
         this.router = router;
-        this.title = 'Tour of Goals';
+        this.title = 'Goals';
     }
-    GoalsComponent.prototype.onSelect = function (goal) {
-        this.selectedGoal = goal;
-    };
     GoalsComponent.prototype.getGoals = function () {
         var _this = this;
         this.goalService.getGoals().then(function (goals) { return _this.goals = goals; });
@@ -27,8 +24,8 @@ var GoalsComponent = (function () {
     GoalsComponent.prototype.ngOnInit = function () {
         this.getGoals();
     };
-    GoalsComponent.prototype.gotoDetail = function () {
-        this.router.navigate(['/detail', this.selectedGoal.id]);
+    GoalsComponent.prototype.gotoDetail = function (goal) {
+        this.router.navigate(['/detail', goal.id]);
     };
     GoalsComponent.prototype.add = function (name) {
         var _this = this;
@@ -39,7 +36,6 @@ var GoalsComponent = (function () {
         this.goalService.create(name)
             .then(function (goal) {
             _this.goals.push(goal);
-            _this.selectedGoal = null;
         });
     };
     GoalsComponent.prototype.delete = function (goal) {
@@ -48,9 +44,6 @@ var GoalsComponent = (function () {
             .delete(goal.id)
             .then(function () {
             _this.goals = _this.goals.filter(function (h) { return h !== goal; });
-            if (_this.selectedGoal === goal) {
-                _this.selectedGoal = null;
-            }
         });
     };
     return GoalsComponent;

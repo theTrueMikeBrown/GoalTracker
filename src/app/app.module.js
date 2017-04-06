@@ -17,6 +17,8 @@ var app_component_1 = require("./app.component");
 var goals_component_1 = require("./goals.component");
 var goal_detail_component_1 = require("./goal-detail.component");
 var goal_service_1 = require("./goal.service");
+var team_component_1 = require("./team.component");
+var person_service_1 = require("./person.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -35,8 +37,9 @@ AppModule = __decorate([
             app_component_1.AppComponent,
             goals_component_1.GoalsComponent,
             goal_detail_component_1.GoalDetailComponent,
+            team_component_1.TeamComponent
         ],
-        providers: [goal_service_1.GoalService],
+        providers: [goal_service_1.GoalService, person_service_1.PersonService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

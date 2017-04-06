@@ -1,0 +1,13 @@
+<h2>My Team</h2>
+<div>
+    <label>Team member name:</label> <input #personName />
+    <button (click)="add(personName.value); personName.value=''">
+        Add
+    </button>
+</div>
+<ul class="people">
+    <li *ngFor="let person of people" (click)="gotoDetail(person)">
+        <button class="delete" (click)="delete(person); $event.stopPropagation()">x</button>
+        <span>{{person.name}}</span>
+    </li>
+</ul>

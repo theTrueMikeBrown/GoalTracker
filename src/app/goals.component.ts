@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Goal } from './goal';
 import { GoalService } from './goal.service';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'my-goals',
@@ -11,20 +13,16 @@ import { GoalService } from './goal.service';
     
 export class GoalsComponent  {
     constructor(private goalService: GoalService, private router: Router) { }
-    title = 'Tour of Goals';
-    selectedGoal: Goal;    
+    title = 'Goals';
     goals: Goal[];
-    onSelect(goal: Goal): void {
-        this.selectedGoal = goal;
-    }
     getGoals(): void {
         this.goalService.getGoals().then(goals => this.goals = goals);
     }
     ngOnInit(): void {
         this.getGoals();
     }
-    gotoDetail(): void {
-        this.router.navigate(['/detail', this.selectedGoal.id]);
+    gotoDetail(goal: Goal): void {
+        this.router.navigate(['/detail', goal.id]);
     }
 
     add(name: string): void {
@@ -33,7 +31,6 @@ export class GoalsComponent  {
         this.goalService.create(name)
             .then(goal => {
                 this.goals.push(goal);
-                this.selectedGoal = null;
             });
     }
 
@@ -42,7 +39,6 @@ export class GoalsComponent  {
             .delete(goal.id)
             .then(() => {
                 this.goals = this.goals.filter(h => h !== goal);
-                if (this.selectedGoal === goal) { this.selectedGoal = null; }
             });
     }
 

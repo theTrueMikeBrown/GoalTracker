@@ -1,10 +1,10 @@
 <div *ngIf="goal">
-    <h2>{{goal.name}} details!</h2>
+    <h2>{{goal.name}}</h2>
     <div>
         <label>id: </label>{{goal.id}}
     </div>
     <div>
-        <label>name: </label>
+        <label>text: </label>
         <input [(ngModel)]="goal.name" placeholder="name" />
     </div>
     <button (click)="goBack()">Back</button>

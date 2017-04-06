@@ -11,7 +11,10 @@ var InMemoryDataService = (function () {
             { id: 5, name: 'Fix it!' },
             { id: 6, name: 'Keep identifying problems and fixing them until they are FIXED!' },
         ];
-        return { goals: goals };
+        var people = [
+            { id: 1, name: 'Mike' },
+        ];
+        return { goals: goals, people: people };
     };
     return InMemoryDataService;
 }());

@@ -6,18 +6,8 @@
     </button>
 </div>
 <ul class="goals">
-    <li *ngFor="let goal of goals" (click)="onSelect(goal)"
-        [class.selected]="goal === selectedGoal">
-        <button class="delete"
-                (click)="delete(goal); $event.stopPropagation()">
-            x
-        </button>
+    <li *ngFor="let goal of goals" (click)="gotoDetail(goal)">
+        <button class="delete" (click)="delete(goal); $event.stopPropagation()">x</button>
         <span>{{goal.name}}</span>
     </li>
 </ul>
-<div *ngIf="selectedGoal">
-    <h2>
-        {{selectedGoal.name | uppercase}} is my goal
-    </h2>
-    <button (click)="gotoDetail()">View Details</button>
-</div>
