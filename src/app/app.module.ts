@@ -1,36 +1,30 @@
+﻿import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppRoutingModule } from './app-routing.module';
-
-// Imports for loading & configuring the in-memory web api
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
-
 import { AppComponent } from './app.component';
-import { GoalsComponent } from './goals.component';
-import { GoalDetailComponent } from './goal-detail.component';
-import { GoalService } from './goal.service';
-import { TeamComponent } from './team.component';
-import { PersonService } from './person.service'
+import { AngularFireModule } from 'angularfire2';
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyAjHEX9fWG2uQQUMtdaNqekPpt87vMOgtI",
+    authDomain: "lftigoalapp.firebaseapp.com",
+    databaseURL: "https://lftigoalapp.firebaseio.com",
+    storageBucket: "lftigoalapp.appspot.com",
+    messagingSenderId: "487596075413"
+};
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpModule,
-        InMemoryWebApiModule.forRoot(InMemoryDataService),
-        AppRoutingModule
-    ],
-    declarations: [
-        AppComponent,
-        GoalsComponent,
-        GoalDetailComponent,
-        TeamComponent        
-    ],
-    providers: [GoalService, PersonService],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    AngularFireModule.initializeApp(firebaseConfig)
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

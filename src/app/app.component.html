@@ -1,0 +1,17 @@
+﻿<div class="container">
+  <h1>
+    {{title}}
+  </h1>
+  <div>
+    <div class="row">
+      <span class="col-md-1 clickable" [ngClass]="{'active': user && user.name == u.name }" *ngFor="let u of users | async" (click)="SetName(u.name)">{{u.name}}</span>
+    </div>
+  </div>
+  <div *ngIf="user">
+    <h3>Goals</h3>
+    <div *ngFor="let goal of goals | async"><span (click)="KillGoal(goal.$key)" class="clickable">&nbsp;•&nbsp;</span><span>{{goal.text}}</span></div>
+    <div>
+      <input type="text" id="goalText" placeholder="What is your new goal?" (keyup.enter)="SetNewGoal($event.target.value)" [(ngModel)]="newGoal" />
+    </div>
+  </div>
+</div>
